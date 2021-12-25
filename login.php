@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT `id_p`, `username`, `password` FROM `user` WHERE username = '$username'  ";
+        $sql = "SELECT `id_p`, `username`, `password`,`role` FROM `user` WHERE username = '$username'  ";
         //print_r($sql);
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
                 // Check if username exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $role);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
                             // Password is correct, so start a new session
@@ -62,7 +62,13 @@ if (isset($_POST['login'])) {
                             $_SESSION["username"] = $username;
                             //check the group and redirect to the correct dashboard
                             // Redirect user to welcome page
-                            header("location: home");
+                            if($role=='admin') {
+                                header("location: user/administrator/dashboard.php");
+                            }
+                            else {
+                                header("location: home");
+                            }
+
                         } else {
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
@@ -107,8 +113,17 @@ if (isset($_POST['login'])) {
 <div class="container">
     <section class="vh-100" >
         <div class="container h-100">
+            <div class="text-center justify-content-center alert-success col-lg-12 col-md-12 col-sm-12">
+            <?php
+            if(isset($_GET['success'])) {
+                echo '<p>Contul a fost creat cu succes.Acum te poti loga!</p>';
+            }
+
+            ?>
+            </div>
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-12 col-xl-11">
+
                     <div class="card text-black" style="border-radius: 25px;">
                         <div class="card-body p-md-5">
                             <div class="row justify-content-center">

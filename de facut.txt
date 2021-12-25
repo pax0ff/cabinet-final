@@ -1,0 +1,4 @@
+-user roles
+-logare in platforma in functie de user
+-adaugare useri asistenta/doctor/receptie
+-tabele doctor/asistenta/receptie

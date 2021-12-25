@@ -8,7 +8,11 @@
     </ul>
 
     <div class="col-md-3 text-end">
-
         <button type="button" class="btn btn-primary"><a class="text-white nav-link px-2 link-dark" href="register">Inregistreaza-te</a></button>
+        <?php
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+            echo '<button type="button" class="btn btn-danger"><a class="text-white nav-link px-2 link-dark" href="logout">Log out</a></button>';
+        }
+        ?>
     </div>
 </header>

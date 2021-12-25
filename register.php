@@ -90,7 +90,7 @@ if(isset($_POST['register'])){
 
             if($sql){
                 // Redirect to login page
-                header("location: login");
+                header("location: login?success=1");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -193,6 +193,23 @@ if(isset($_POST['register'])){
                                                 <label class="form-label" for="form3Example4cd">Confirma parola</label>
                                                 <input type="password" name="confirm_password" id="form3Example4cd" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>"" />
                                                 <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example4cd">Rol user</label>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Dropdown button
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
 

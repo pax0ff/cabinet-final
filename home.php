@@ -23,7 +23,18 @@ require_once("utils/Session.php");
 <body>
 <?php require_once("header.php"); ?>
     <div class="container-fluid image_fixed">
+        <div class="text-center justify-content-center col-lg-12 col-md-12 col-sm-12">
+            <?php
 
+            if(isset($_GET['logout'])) {
+                $logout = $_GET['logout'];
+                if($logout==1) {
+                    echo '<p>V-ati deconectat cu succes! Puteti accesa din nou platforma <a href="login" class="text-danger">AICI</a></p>';
+                }
+            }
+
+            ?>
+        </div>
     </div>
 
 
